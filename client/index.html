@@ -5,22 +5,32 @@
 
 <body>
 	<div id="wrapper">
-        <h1>Todo List</h1>
-        {{> list}}
+		{{> main}}
     </div>
 </body>
 
-<template name="get-list">
+<template name="main">
+    {{#if currentList}}
+		{{> list}}
+	{{else}}
+		{{> getList}}
+	{{/if}}
+</template>
+
+<template name="getList">
+    <h1>Create or load a todo list</h1>		
 	<form class="form-inline well">
 		<input type="text" name="list" id="get-list">
-		<input type="submit" class="btn btn-primary" href="/tasks/add" id="submit-get-list" value="get list">
+		<input type="submit" class="btn btn-primary" href="/tasks/add" id="submit-get-list" value="create/get list">
 	</form>
 </template>
 
 <template name="list">
+    <h1>Todo List - {{ currentList }}</h1>
+	<a href="/lists" id="new-list">pick/create a different list</a>
 	<ul class="unstyled">
 		{{#each tasks}}
-			<li>{{name}} <a href="tasks/remove/{{_id}}" class="remove" data-id="{{_id}}">done</li>
+			<li>{{name}} <a href="tasks/remove/{{_id}}" class="remove" data-id="{{_id}}">done</a></li>
 		{{/each}}
 	</ul>
 	<form class="form-inline well">
