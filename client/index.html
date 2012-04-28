@@ -1,5 +1,6 @@
 <head>
 	<title>todo</title>
+	<link rel="stylesheet" type="text/css" media="print" src="print.css" />
 </head>
 
 <body>
@@ -9,11 +10,21 @@
     </div>
 </body>
 
+<template name="get-list">
+	<form class="form-inline well">
+		<input type="text" name="list" id="get-list">
+		<input type="submit" class="btn btn-primary" href="/tasks/add" id="submit-get-list" value="get list">
+	</form>
+</template>
+
 <template name="list">
-	<ul>
+	<ul class="unstyled">
 		{{#each tasks}}
-			{{> name}}
+			<li>{{name}} <a href="tasks/remove/{{_id}}" class="remove" data-id="{{_id}}">done</li>
 		{{/each}}
 	</ul>
-	<input type="text" name="task" id="new-task"><a class="button" href="/tasks/add" id="add-task">add task</a>
+	<form class="form-inline well">
+		<input type="text" name="task" id="new-task">
+		<a class="btn btn-primary" href="/tasks/add" id="add-task">add task</a>
+	</form>
 </template>
