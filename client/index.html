@@ -1,0 +1,19 @@
+<head>
+	<title>todo</title>
+</head>
+
+<body>
+	<div id="wrapper">
+        <h1>Todo List</h1>
+        {{> list}}
+    </div>
+</body>
+
+<template name="list">
+	<ul>
+		{{#each tasks}}
+			{{> name}}
+		{{/each}}
+	</ul>
+	<input type="text" name="task" id="new-task"><a class="button" href="/tasks/add" id="add-task">add task</a>
+</template>
